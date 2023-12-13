@@ -1,4 +1,4 @@
-FROM balenalib/raspberry-pi-python:3.7.4
+FROM balenalib/raspberry-pi-python:3.9
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -12,9 +12,9 @@ RUN apt-get update && \
 
 RUN cd /opt && \
     git clone https://github.com/hzeller/rpi-rgb-led-matrix.git && \
-    cd rpi-rgb-led-matrix && \
-    make build-python PYTHON=$(which python3) && \
-    make install-python PYTHON=$(which python3)
+    cd rpi-rgb-led-matrix 
+RUN make build-python PYTHON=$(which python3)
+RUN make install-python PYTHON=$(which python3)
 
 COPY ./requirements.txt /code/requirements.txt
 
