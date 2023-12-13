@@ -11,10 +11,11 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN cd /opt && \
-    git clone https://github.com/hzeller/rpi-rgb-led-matrix.git && \
-    cd rpi-rgb-led-matrix 
-RUN make build-python PYTHON=$(which python3)
-RUN make install-python PYTHON=$(which python3)
+    git clone https://github.com/hzeller/rpi-rgb-led-matrix.git
+RUN cd /opt/rpi-rgb-led-matrix  && \
+    make build-python PYTHON=$(which python3)
+RUN cd /opt/rpi-rgb-led-matrix  && \
+    make install-python PYTHON=$(which python3)
 
 COPY ./requirements.txt /code/requirements.txt
 
